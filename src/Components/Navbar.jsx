@@ -8,7 +8,7 @@ import logoImg from ".././assets/logo.png"
 const Navbar = () => {
   return (
     <div className="navbar bg-base-100 shadow-sm">
-      <div className="w-11/12 mx-auto flex justify-between items-center">
+      <div className="md:w-11/12 md:mx-auto flex justify-between items-center">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -64,7 +64,7 @@ const Navbar = () => {
             </NavLink>
           </ul>
         </div>
-        <div className="navbar-end ">
+        <div className="navbar-end md:ml-0 ml-28">
           <a href="https://github.com/eistiakahmed" target="_blank">
             <span className="btn flex items-center gap-1  bg-gradient-to-r from-[#632EE3] to-[#9F62F2] p-3 rounded-3xl text-white">
               <FaGithub />
