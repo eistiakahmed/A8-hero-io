@@ -7,7 +7,7 @@ const Banner = () => {
   return (
     <div className="flex flex-col justify-center items-center w-full">
  
-      <h1 className="text-center font-bold text-[#001931] text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight">
+      <h1 className="text-center font-bold text-[#001931] text-4xl md:text-6xl lg:text-7xl leading-tight">
         We Build <br />
         <span className="bg-gradient-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent">
           Productive
@@ -22,19 +22,19 @@ const Banner = () => {
       </p>
 
      
-      <div className="flex flex-col sm:flex-row justify-center gap-5 my-5">
+      <div className="flex flex-col lg:flex-row justify-center gap-5 my-5">
         <a
           href="https://play.google.com/store/"
           className="border border-gray-200 p-3 flex items-center rounded-lg hover:shadow-md transition"
         >
-          <img src={googlePlayStore} alt="" className="w-8 h-8 sm:w-10 sm:h-10" />
+          <img src={googlePlayStore} alt="" className="w-8 h-8" />
           <p className="ml-3 text-sm ">Google Play</p>
         </a>
         <a
           href="https://www.apple.com/app-store/"
           className="border border-gray-200 p-3 flex items-center rounded-lg hover:shadow-md transition"
         >
-          <img src={appStore} alt="" className="w-8 h-8 sm:w-10 sm:h-10" />
+          <img src={appStore} alt="" className="w-8 h-8" />
           <p className="ml-3 text-sm ">App Store</p>
         </a>
       </div>
@@ -46,25 +46,25 @@ const Banner = () => {
 
     
       <div className="w-full bg-gradient-to-r from-[#632EE3] to-[#9F62F2] py-16 md:py-24 flex flex-col items-center">
-        <h1 className="font-bold text-3xl sm:text-4xl md:text-5xl text-white text-center mb-10">
+        <h1 className="font-bold text-3xl md:text-4xl lg:text-5xl text-white text-center mb-10">
           Trusted by Millions, Built for You
         </h1>
 
 
-        <div className="flex flex-col sm:flex-row justify-evenly items-center gap-8 sm:gap-12 w-full max-w-6xl text-white text-center">
+        <div className="flex flex-col lg:flex-row justify-evenly items-center gap-8 lg:gap-12 w-full max-w-6xl text-white text-center">
           <div>
             <p className="text-sm">Total Downloads</p>
-            <h1 className="font-extrabold text-4xl sm:text-5xl md:text-[64px]">29.6M</h1>
+            <h1 className="font-extrabold text-4xl md:text-5xl lg:text-[64px]">29.6M</h1>
             <p className="text-sm">21% more than last month</p>
           </div>
           <div>
             <p className="text-sm">Total Reviews</p>
-            <h1 className="font-extrabold text-4xl sm:text-5xl md:text-[64px]">906K</h1>
+            <h1 className="font-extrabold text-4xl md:text-5xl lg:text-[64px]">906K</h1>
             <p className="text-sm">46% more than last month</p>
           </div>
           <div>
             <p className="text-sm">Active Apps</p>
-            <h1 className="font-extrabold text-4xl sm:text-5xl md:text-[64px]">132+</h1>
+            <h1 className="font-extrabold text-4xl md:text-5xl lg:text-[64px]">132+</h1>
             <p className="text-sm">31 more will Launch</p>
           </div>
         </div>
