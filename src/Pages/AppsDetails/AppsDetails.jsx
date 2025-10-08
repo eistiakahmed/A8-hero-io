@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import useApps from '../../Hooks/useApps';
 import downloadImg from '../../assets/icon-downloads.png';
@@ -16,16 +16,24 @@ import {
 } from 'recharts';
 import Spinner from '../../Components/Spinner';
 import { toast, ToastContainer } from 'react-toastify';
+import AppDetailsError from '../Error/AppDetailsError';
 
 const AppsDetails = () => {
+  const [toggleBtn, setToggleBtn] = useState(false);
   const { id } = useParams();
-  const { apps, loading } = useApps();
+  const { apps, loading, error } = useApps();
 
   const appsFilter = apps.find((app) => app.id === Number(id));
 
+  useEffect(() => {
+    const existingList = JSON.parse(localStorage.getItem('Installation'));
+    const isInstalled = existingList.some((a) => a.id === Number(id));
+    setToggleBtn(isInstalled);
+  }, [id]);
+
   if (loading) return <Spinner />;
-  // if (!appsFilter)
-  //   return <p className="text-center text-red-500 mt-10">App not found</p>;
+  if (error) return <AppDetailsError />;
+  if (!appsFilter) return <AppDetailsError />;
 
   const {
     image,
@@ -40,18 +48,14 @@ const AppsDetails = () => {
   } = appsFilter;
 
   const handleAddToInstallation = () => {
-    const existingList = JSON.parse(localStorage.getItem('Installation'));
-    // console.log(existingList)
-    let updatedList = [];
-    if (existingList) {
-      const isDuplicated = existingList.some((a) => a.id === appsFilter.id);
-      if (isDuplicated) return toast.warning('Already Added');
-      updatedList = [...existingList, appsFilter];
-    } else {
-      updatedList.push(appsFilter);
-    }
+    const existingList = JSON.parse(localStorage.getItem('Installation')) || [];
+    const isDuplicated = existingList.some((a) => a.id === appsFilter.id);
+    if (isDuplicated) return toast.warning('Already Added');
+
+    const updatedList = [...existingList, appsFilter];
     localStorage.setItem('Installation', JSON.stringify(updatedList));
-    toast.success(`${title} Installed Successfully!`)
+    toast.success(`${title} Installed Successfully!`);
+    setToggleBtn(true);
   };
 
   return (
@@ -72,7 +76,6 @@ const AppsDetails = () => {
             <span className="text-blue-600 font-medium">{companyName}</span>
           </p>
 
-          {/* Divider */}
           <div className=" border-b border-slate-300 my-4"></div>
 
           <div className="flex md:flex-row  flex-col gap-6 mt-6">
@@ -111,14 +114,17 @@ const AppsDetails = () => {
           <div className="flex justify-center md:justify-start">
             <button
               onClick={handleAddToInstallation}
-              className="btn bg-green-500 text-white mt-8 px-6 py-2 rounded-2xl hover:bg-green-600 transition-all"
+              disabled={toggleBtn}
+              className={`mt-8 px-6 py-2 rounded-2xl transition-all text-white ${
+                toggleBtn ? 'bg-green-400' : 'bg-green-500 hover:bg-green-600'
+              }`}
             >
-              Install Now ({size}MB)
+              {toggleBtn ? 'Installed' : `Install Now (${size}MB)`}
             </button>
           </div>
         </div>
       </div>
-      {/* Divider */}
+
       <div className="border-b border-slate-300 my-4"></div>
 
       <div className="">
@@ -138,7 +144,6 @@ const AppsDetails = () => {
         </ResponsiveContainer>
       </div>
 
-      {/* Divider */}
       <div className="border-b border-slate-300 my-4"></div>
       <h1 className="text-2xl font-bold my-2.5">Description</h1>
       <p className="text-slate-600">{description}</p>

@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import InstallApps from './InstallApps';
 import { toast, ToastContainer } from 'react-toastify';
-
+import Spinner from '../../Components/Spinner';
 
 const Installation = () => {
   const [installation, setInstallation] = useState([]);
   const [sortApps, setSort] = useState('none');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const savedList = JSON.parse(localStorage.getItem('Installation'));
-    if (savedList) setInstallation(savedList);
+    setTimeout(() => {
+      const savedList = JSON.parse(localStorage.getItem('Installation'));
+      if (savedList) setInstallation(savedList);
+      setLoading(false);
+    }, 200);
   }, []);
 
   // setInstallation({savedList})
@@ -23,6 +27,14 @@ const Installation = () => {
       return installation;
     }
   })();
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-[50vh]">
+        <Spinner />
+      </div>
+    );
+  }
 
   const handleRemove = (id) => {
     const getAppData = JSON.parse(localStorage.getItem('Installation'));
@@ -56,7 +68,7 @@ const Installation = () => {
               onChange={(e) => setSort(e.target.value)}
               className="select select-bordered"
             >
-              <option value="none">Sort by Price</option>
+              <option value="none">Sort by Downloads</option>
               <option value="price-desc">High-&gt;Low</option>
               <option value="price-asc">Low-&gt;High</option>
             </select>
@@ -67,7 +79,7 @@ const Installation = () => {
       {/* Card Section */}
       <div className="">
         {sortItem.length === 0 ? (
-          <h1 className="flex justify-center mt-35 text-4xl font-bold">
+          <h1 className="flex justify-center mt-35 text-4xl font-bold text-gray-500">
             No App Found
           </h1>
         ) : (

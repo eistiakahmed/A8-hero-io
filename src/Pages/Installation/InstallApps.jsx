@@ -5,7 +5,7 @@ import rating from "../../assets/icon-ratings.png"
 import { formatNumber } from '../../FormatNumber/FormatNumber';
 
 const InstallApps = ({ install, handleRemove }) => {
-  console.log(install);
+  // console.log(install);
   const { id,image,title, downloads, size, ratingAvg} = install;
   return (
     <div>

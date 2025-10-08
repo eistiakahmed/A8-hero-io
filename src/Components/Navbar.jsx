@@ -56,7 +56,7 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 font-medium flex gap-4">
+          <ul className="menu menu-horizontal px-1 flex gap-4 font-semibold">
             <NavLink
               to="/"
               className={({ isActive }) =>
