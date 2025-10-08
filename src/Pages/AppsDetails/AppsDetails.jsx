@@ -5,7 +5,17 @@ import downloadImg from '../../assets/icon-downloads.png';
 import ratingImg from '../../assets/icon-ratings.png';
 import reviewImg from '../../assets/icon-review.png';
 import { formatNumber } from '../../FormatNumber/FormatNumber';
-import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from 'recharts';
+import Spinner from '../../Components/Spinner';
+import { toast, ToastContainer } from 'react-toastify';
 
 const AppsDetails = () => {
   const { id } = useParams();
@@ -13,9 +23,9 @@ const AppsDetails = () => {
 
   const appsFilter = apps.find((app) => app.id === Number(id));
 
-  if (loading) return <span>Loading.....</span>;
-  if (!appsFilter)
-    return <p className="text-center text-red-500 mt-10">App not found</p>;
+  if (loading) return <Spinner />;
+  // if (!appsFilter)
+  //   return <p className="text-center text-red-500 mt-10">App not found</p>;
 
   const {
     image,
@@ -26,8 +36,23 @@ const AppsDetails = () => {
     reviews,
     size,
     ratings,
-    description
+    description,
   } = appsFilter;
+
+  const handleAddToInstallation = () => {
+    const existingList = JSON.parse(localStorage.getItem('Installation'));
+    // console.log(existingList)
+    let updatedList = [];
+    if (existingList) {
+      const isDuplicated = existingList.some((a) => a.id === appsFilter.id);
+      if (isDuplicated) return toast.warning('Already Added');
+      updatedList = [...existingList, appsFilter];
+    } else {
+      updatedList.push(appsFilter);
+    }
+    localStorage.setItem('Installation', JSON.stringify(updatedList));
+    toast.success(`${title} Installed Successfully!`)
+  };
 
   return (
     <div className="w-11/12 mx-auto">
@@ -82,40 +107,54 @@ const AppsDetails = () => {
             </div>
           </div>
 
+          {/* Install btn */}
           <div className="flex justify-center md:justify-start">
-            <button className="btn bg-green-500 text-white mt-8 px-6 py-2 rounded-2xl hover:bg-green-600 transition-all">
+            <button
+              onClick={handleAddToInstallation}
+              className="btn bg-green-500 text-white mt-8 px-6 py-2 rounded-2xl hover:bg-green-600 transition-all"
+            >
               Install Now ({size}MB)
             </button>
           </div>
         </div>
       </div>
-
       {/* Divider */}
       <div className="border-b border-slate-300 my-4"></div>
 
-      
-
-      <div className=''>
+      <div className="">
         <h1 className="font-semibold text-2xl my-3">Rating</h1>
         <ResponsiveContainer width="100%" height={400}>
-        <BarChart
-          data={[...ratings].reverse()}
-          layout="vertical"
-          margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis type="number" />
-          <YAxis type="category" dataKey="name" />
-          <Tooltip />
-          <Bar dataKey="count" fill="#f59e0b" />
-        </BarChart>
-      </ResponsiveContainer>
+          <BarChart
+            data={ratings}
+            layout="vertical"
+            margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis type="number" />
+            <YAxis type="category" dataKey="name" />
+            <Tooltip />
+            <Bar dataKey="count" fill="#f59e0b" />
+          </BarChart>
+        </ResponsiveContainer>
       </div>
 
       {/* Divider */}
       <div className="border-b border-slate-300 my-4"></div>
-      <h1 className='text-2xl font-bold my-2.5'>Description</h1>
-      <p className='text-slate-600'>{description}</p>
+      <h1 className="text-2xl font-bold my-2.5">Description</h1>
+      <p className="text-slate-600">{description}</p>
+
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   );
 };
