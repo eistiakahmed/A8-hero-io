@@ -22,13 +22,19 @@ const AppsDetails = () => {
   const [toggleBtn, setToggleBtn] = useState(false);
   const { id } = useParams();
   const { apps, loading, error } = useApps();
-
-  const appsFilter = apps.find((app) => app.id === Number(id));
+  const appsFilter = apps?.find((app) => Number(app?.id) === Number(id));
 
   useEffect(() => {
-    const existingList = JSON.parse(localStorage.getItem('Installation'));
-    const isInstalled = existingList.some((a) => a.id === Number(id));
-    setToggleBtn(isInstalled);
+    try {
+      const existingList =
+        JSON.parse(localStorage.getItem('Installation')) || [];
+      const cleanedList = existingList.filter((a) => a && a.id);
+      const isInstalled = cleanedList.some((a) => Number(a.id) === Number(id));
+      setToggleBtn(isInstalled);
+    } catch (e) {
+      console.error('LocalStorage parsing error:', e);
+      setToggleBtn(false);
+    }
   }, [id]);
 
   if (loading) return <Spinner />;
@@ -48,14 +54,24 @@ const AppsDetails = () => {
   } = appsFilter;
 
   const handleAddToInstallation = () => {
-    const existingList = JSON.parse(localStorage.getItem('Installation')) || [];
-    const isDuplicated = existingList.some((a) => a.id === appsFilter.id);
-    if (isDuplicated) return toast.warning('Already Added');
+    try {
+      const existingList =
+        JSON.parse(localStorage.getItem('Installation')) || [];
+      const cleanedList = existingList.filter((a) => a && a.id);
+      const isDuplicated = cleanedList.some(
+        (a) => Number(a.id) === Number(appsFilter.id)
+      );
 
-    const updatedList = [...existingList, appsFilter];
-    localStorage.setItem('Installation', JSON.stringify(updatedList));
-    toast.success(`${title} Installed Successfully!`);
-    setToggleBtn(true);
+      if (isDuplicated) return toast.warning('Already Added');
+
+      const updatedList = [...cleanedList, appsFilter];
+      localStorage.setItem('Installation', JSON.stringify(updatedList));
+      toast.success(`${title} Installed Successfully!`);
+      setToggleBtn(true);
+    } catch (e) {
+      console.error('Error saving installation:', e);
+      toast.error('Something went wrong!');
+    }
   };
 
   return (
@@ -110,7 +126,6 @@ const AppsDetails = () => {
             </div>
           </div>
 
-          {/* Install btn */}
           <div className="flex justify-center md:justify-start">
             <button
               onClick={handleAddToInstallation}
@@ -127,7 +142,7 @@ const AppsDetails = () => {
 
       <div className="border-b border-slate-300 my-4"></div>
 
-      <div className="">
+      <div>
         <h1 className="font-semibold text-2xl my-3">Rating</h1>
         <ResponsiveContainer width="100%" height={400}>
           <BarChart
@@ -148,18 +163,7 @@ const AppsDetails = () => {
       <h1 className="text-2xl font-bold my-2.5">Description</h1>
       <p className="text-slate-600">{description}</p>
 
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
+      <ToastContainer position="top-center" autoClose={4000} theme="colored" />
     </div>
   );
 };
