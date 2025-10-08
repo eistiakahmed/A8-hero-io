@@ -2,25 +2,21 @@ import React from 'react';
 
 import downloadImage from "../../assets/icon-downloads.png"
 import rating from "../../assets/icon-ratings.png"
+import { Link } from 'react-router';
+import { formatNumber } from '../../FormatNumber/FormatNumber';
+// import { formatNumber } from '../../FormatNumber/FormatNumber';
 
 
 
-const AppPage = ({ app }) => {
-  console.log(app);
+const AppPage = ({app}) => {
+  // console.log(app);
 
-   const formatNumber = (num) => { 
-    if(num >= 1000000) {
-      return parseFloat((num/1000000).toFixed(1)) + "M";
-    }else if (num >= 1000){ 
-      return parseFloat((num / 1000).toFixed(1)) + "k";
-    }else{
-      return num.toString();
-    }
-   }
+  //  const formatNumber = formatNumber()
 
-  const { title, image, ratingAvg, downloads } = app;
+  const { id,title, image, ratingAvg, downloads } = app;
   return (
-    <div className=" p-5 rounded-3xl bg-white shadow-sm hover:scale-105 transition duration-500">
+    <Link to={`/apps/${id}`}>
+    <div  className=" p-5 rounded-3xl bg-white shadow-sm hover:scale-105 transition duration-500">
       <div className="flex justify-center">
         <img
           src={image}
@@ -40,6 +36,7 @@ const AppPage = ({ app }) => {
         </span>
       </div>
     </div>
+    </Link>
   );
 };
 

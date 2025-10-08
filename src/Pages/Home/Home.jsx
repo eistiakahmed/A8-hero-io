@@ -3,13 +3,14 @@ import Banner from '../../Components/Banner';
 import useApps from '../../Hooks/useApps';
 import AppPage from '../AppPage/AppPage';
 import { Link } from 'react-router';
+// import { formatNumber } from '../../FormatNumber/FormatNumber';
 
 const Home = () => {
   
   const {apps} = useApps()
 
   const trendingApps = apps.slice(0,8)
-  console.log(trendingApps)
+  // console.log(trendingApps)
 
   return (
     <div>
