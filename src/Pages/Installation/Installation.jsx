@@ -61,7 +61,7 @@ const Installation = () => {
           </h3>
         </div>
 
-        {/* Sort btn #TODO */}
+        {/* Sort btn */}
         <div>
           <label className="form-control w-full w-x-xs">
             <select

@@ -42,7 +42,7 @@ const Home = () => {
       <div className="w-11/12 mx-auto my-10 flex justify-center">
         <Link
           to="/apps"
-          className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl bg-gradient-to-r from-[#632EE3] to-[#9F62F2] text-white px-8"
+          className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl bg-gradient-to-r from-[#632EE3] to-[#9F62F2] text-white px-8 transition duration-300 hover:scale-105"
         >
           Show All
         </Link>

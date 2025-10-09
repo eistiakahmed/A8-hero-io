@@ -75,7 +75,7 @@ const Navbar = () => {
               to="/"
               className={ ({ isActive }) =>
                 isActive
-                  ? 'border-b border-b-[#9F62F2] bg-gradient-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent'
+                  ? 'border-b border-b-[#9F62F2] bg-gradient-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent transition duration-200 hover:scale-105'
                   : ''
               }
             >
@@ -85,7 +85,7 @@ const Navbar = () => {
               to="/apps"
               className={ ({ isActive }) =>
                 isActive
-                  ? 'border-b border-b-[#9F62F2] bg-gradient-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent'
+                  ? 'border-b border-b-[#9F62F2] bg-gradient-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent transition duration-300 hover:scale-105'
                   : ''
               }
             >
@@ -95,7 +95,7 @@ const Navbar = () => {
               to="/installation"
               className={ ({ isActive }) =>
                 isActive
-                  ? 'border-b border-b-[#9F62F2] bg-gradient-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent'
+                  ? 'border-b border-b-[#9F62F2] bg-gradient-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent transition duration-300 hover:scale-105'
                   : ''
               }
             >
@@ -104,13 +104,13 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <div className="navbar-end ml-auto">
+        <div className="navbar-end ml-auto ">
           <a
             href="https://github.com/eistiakahmed"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <span className="btn flex items-center gap-1 bg-gradient-to-r from-[#632EE3] to-[#9F62F2] p-3 rounded-3xl text-white">
+            <span className="btn transition duration-300 hover:scale-105 flex items-center gap-1 bg-gradient-to-r from-[#632EE3] to-[#9F62F2] p-3 rounded-3xl text-white">
               <FaGithub />
               <p className="font-semibold">Contribute</p>
             </span>
