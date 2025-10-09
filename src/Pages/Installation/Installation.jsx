@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import InstallApps from './InstallApps';
 import { toast, ToastContainer } from 'react-toastify';
 import Spinner from '../../Components/Spinner';
+import { Link } from 'react-router';
 
 const Installation = () => {
   const [installation, setInstallation] = useState([]);
@@ -79,9 +80,13 @@ const Installation = () => {
       {/* Card Section */}
       <div className="">
         {sortItem.length === 0 ? (
-          <h1 className="flex justify-center mt-35 text-4xl font-bold text-gray-500">
-            No App Found
-          </h1>
+          <div className="flex flex-col items-center justify-center my-35">
+            <h1 className="text-3xl md:text-5xl font-bold text-gray-500">No App Found</h1>
+            <div className='py-5'>
+              <Link to="/"><button className="btn mr-3.5 bg-gradient-to-r from-[#632EE3] to-[#9F62F2] text-white">Go Back!</button></Link>
+              <Link to="/apps"><button className="btn bg-gradient-to-r from-[#632EE3] to-[#9F62F2] text-white"> Browse apps</button></Link>
+            </div>
+          </div>
         ) : (
           sortItem.map((install) => (
             <InstallApps

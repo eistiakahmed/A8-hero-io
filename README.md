@@ -19,7 +19,7 @@
 
 
 
-## Technologies: 
+## Technologies: use
 -  React, React Router, Tailwind CSS, DaisyUI, React Icons, lucide-react, Axios,Recharts, React Toastify.
 
 

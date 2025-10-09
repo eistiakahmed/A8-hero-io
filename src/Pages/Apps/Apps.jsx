@@ -15,7 +15,6 @@ const Apps = () => {
     setSearch(e.target.value);
     setSearching(true);
 
-    
     setTimeout(() => {
       setSearching(false);
     }, 1000);
