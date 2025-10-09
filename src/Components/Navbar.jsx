@@ -8,7 +8,7 @@ const Navbar = () => {
       <div className="md:w-11/12 w-full mx-auto flex justify-between items-center py-3 px-4 md:px-0">
         <div className="navbar-start flex items-center gap-3">
           <div className="dropdown lg:hidden">
-            <div tabIndex={0} className="btn btn-ghost">
+            <div tabIndex={ 0 } className="btn btn-ghost">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -25,24 +25,36 @@ const Navbar = () => {
               </svg>
             </div>
             <ul
-              tabIndex={0}
+              tabIndex={ 0 }
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
             >
               <NavLink
                 to="/"
-                className={({ isActive }) => (isActive ? 'bg-gradient-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent' : '')}
+                className={ ({ isActive }) =>
+                  isActive
+                    ? 'bg-gradient-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent'
+                    : ''
+                }
               >
                 Home
               </NavLink>
               <NavLink
                 to="/apps"
-                className={({ isActive }) => (isActive ? 'bg-gradient-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent' : '')}
+                className={ ({ isActive }) =>
+                  isActive
+                    ? 'bg-gradient-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent'
+                    : ''
+                }
               >
                 Apps
               </NavLink>
               <NavLink
                 to="/installation"
-                className={({ isActive }) => (isActive ? 'bg-gradient-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent' : '')}
+                className={ ({ isActive }) =>
+                  isActive
+                    ? 'bg-gradient-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent'
+                    : ''
+                }
               >
                 Installation
               </NavLink>
@@ -50,8 +62,10 @@ const Navbar = () => {
           </div>
 
           <Link to="/" className="flex items-center gap-2">
-            <img src={logoImg} alt="Logo" className="w-[45px] h-[45px]" />
-            <span className="font-bold text-xl bg-gradient-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent ">HERO.IO</span>
+            <img src={ logoImg } alt="Logo" className="w-[45px] h-[45px]" />
+            <span className="font-bold text-xl bg-gradient-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent ">
+              HERO.IO
+            </span>
           </Link>
         </div>
 
@@ -59,7 +73,7 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1 flex gap-4 font-semibold">
             <NavLink
               to="/"
-              className={({ isActive }) =>
+              className={ ({ isActive }) =>
                 isActive
                   ? 'border-b border-b-[#9F62F2] bg-gradient-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent'
                   : ''
@@ -69,7 +83,7 @@ const Navbar = () => {
             </NavLink>
             <NavLink
               to="/apps"
-              className={({ isActive }) =>
+              className={ ({ isActive }) =>
                 isActive
                   ? 'border-b border-b-[#9F62F2] bg-gradient-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent'
                   : ''
@@ -79,7 +93,7 @@ const Navbar = () => {
             </NavLink>
             <NavLink
               to="/installation"
-              className={({ isActive }) =>
+              className={ ({ isActive }) =>
                 isActive
                   ? 'border-b border-b-[#9F62F2] bg-gradient-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent'
                   : ''

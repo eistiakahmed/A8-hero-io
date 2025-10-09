@@ -1,49 +1,105 @@
 import React from 'react';
-import logoImage from '.././assets/logo.png';
+import logoImage from '../assets/logo.png';
 import { RiTwitterXFill } from 'react-icons/ri';
 import { GrLinkedin } from 'react-icons/gr';
-import { FaFacebook } from 'react-icons/fa';
+import { FaFacebook, FaInstagram, FaGithub } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <div className="bg-[#001931] min-h-[200px] flex items-center py-6">
-      <div className="w-11/12 mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6 md:gap-0">
-          <div className="flex items-center gap-2">
+    <footer className="bg-[#001930]  text-white py-12">
+      <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-6">
+        <div>
+          <div className="flex items-center gap-2 mb-4">
             <img src={logoImage} alt="Logo" className="w-[45px] h-[45px]" />
-            <h3 className="font-bold text-white text-xl md:text-2xl">
-              HERO.IO
-            </h3>
+            <h3 className="font-extrabold text-2xl tracking-wide">HERO.IO</h3>
           </div>
-
-          <div className="text-white text-center md:text-right">
-            <h3 className="font-medium text-lg md:text-xl mb-2">
-              Social Links
-            </h3>
-            <span className="flex justify-center md:justify-end gap-3 text-lg">
-              <span className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition">
-                <RiTwitterXFill className="text-white text-xl" />
-              </span>
-              <span className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition">
-                <GrLinkedin className="text-white text-xl" />
-              </span>
-              <span className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition">
-                <FaFacebook className="text-white text-xl" />
-              </span>
-            </span>
-          </div>
-        </div>
-
-        {/* Divider */}
-        <div className="border-b border-gray-500 py-2.5 mt-4"></div>
-
-        <div className="mt-4">
-          <p className="text-white text-center text-sm md:text-base">
-            Copyright © 2025 - All rights reserved
+          <p className="text-gray-300 leading-relaxed">
+            HERO.IO helps you discover and install the best apps in one place.
+            Our mission is to make technology simple, accessible, and enjoyable.
           </p>
         </div>
+
+        <div>
+          <h4 className="font-semibold text-xl mb-4">
+            Quick Links
+          </h4>
+          <ul className="space-y-2 text-gray-300">
+            <li className="hover:text-white transition cursor-pointer">Home</li>
+            <li className="hover:text-white transition cursor-pointer">
+              About Us
+            </li>
+            <li className="hover:text-white transition cursor-pointer">
+              All Apps
+            </li>
+            <li className="hover:text-white transition cursor-pointer">
+              Contact
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 className="font-semibold text-xl mb-4">
+            Support
+          </h4>
+          <ul className="space-y-2 text-gray-200">
+            <li className="hover:text-white transition cursor-pointer">FAQ</li>
+            <li className="hover:text-white transition cursor-pointer">
+              Privacy Policy
+            </li>
+            <li className="hover:text-white transition cursor-pointer">
+              Terms & Conditions
+            </li>
+            <li className="hover:text-white transition cursor-pointer">
+              Help Center
+            </li>
+          </ul>
+        </div>
+
+
+        <div>
+          <h4 className="font-semibold text-xl mb-4">
+            Follow Us
+          </h4>
+          <div className="flex gap-3 mt-3">
+            <a
+              href="#"
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-blue-500 transition-all duration-300 transform hover:-translate-y-1"
+            >
+              <RiTwitterXFill className="text-white text-xl" />
+            </a>
+            <a
+              href="#"
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-blue-500 transition-all duration-300 transform hover:-translate-y-1"
+            >
+              <GrLinkedin className="text-white text-xl" />
+            </a>
+            <a
+              href="#"
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-blue-500 transition-all duration-300 transform hover:-translate-y-1"
+            >
+              <FaFacebook className="text-white text-xl" />
+            </a>
+            <a
+              href="#"
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-blue-500 transition-all duration-300 transform hover:-translate-y-1"
+            >
+              <FaInstagram className="text-white text-xl" />
+            </a>
+            <a
+              href="#"
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-blue-500 transition-all duration-300 transform hover:-translate-y-1"
+            >
+              <FaGithub className="text-white text-xl" />
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
+
+
+      <div className="border-t border-gray-400 mt-10 pt-6 text-center text-gray-400 text-sm">
+        © {new Date().getFullYear()} HERO.IO — All Rights Reserved.
+      </div>
+    </footer>
   );
 };
 

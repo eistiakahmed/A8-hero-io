@@ -68,11 +68,17 @@ const AppsDetails = () => {
       localStorage.setItem('Installation', JSON.stringify(updatedList));
       toast.success(`${title} Installed Successfully!`);
       setToggleBtn(true);
-    } catch (e) {
-      console.error('Error saving installation:', e);
+    } catch (err) {
+      console.error('Error saving installation:', err);
       toast.error('Something went wrong!');
     }
   };
+
+  // Chart Sort
+  const chartRating = [...ratings].sort(
+    (a, b) => parseInt(b.name) - parseInt(a.name)
+  );
+
 
   return (
     <div className="w-11/12 mx-auto">
@@ -131,7 +137,7 @@ const AppsDetails = () => {
               onClick={handleAddToInstallation}
               disabled={toggleBtn}
               className={`mt-8 px-6 py-2 rounded-2xl transition-all text-white ${
-                toggleBtn ? 'bg-green-400' : 'bg-green-500 hover:bg-green-600'
+                toggleBtn ? 'bg-green-400' : 'bg-green-500 hover:bg-green-600 '
               }`}
             >
               {toggleBtn ? 'Installed' : `Install Now (${size}MB)`}
@@ -146,7 +152,7 @@ const AppsDetails = () => {
         <h1 className="font-semibold text-2xl my-3">Rating</h1>
         <ResponsiveContainer width="100%" height={400}>
           <BarChart
-            data={ratings}
+            data={chartRating}
             layout="vertical"
             margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
           >
