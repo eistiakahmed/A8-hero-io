@@ -1,4 +1,4 @@
-# Hero IO
+# Project Name: Hero IO
 
 ## Description
 **Hero.io** is a modern, user-friendly platform for discovering, downloading, and managing apps efficiently. It is designed to provide a seamless experience for app enthusiasts with three main sections:
