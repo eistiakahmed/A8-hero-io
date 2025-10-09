@@ -10,7 +10,6 @@ const Home = () => {
   const navigation = useNavigation();
 
   const trendingApps = apps.slice(0, 8);
-
   return navigation.state === "loading" || loading ? (
     <div className="flex justify-center items-center h-[60vh]">
       <Spinner />

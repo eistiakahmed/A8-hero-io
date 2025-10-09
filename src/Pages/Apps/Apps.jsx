@@ -18,7 +18,7 @@ const Apps = () => {
     
     setTimeout(() => {
       setSearching(false);
-    }, 500);
+    }, 1000);
   };
 
   const term = search.trim().toLowerCase();
